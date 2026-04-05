@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neues bauen in alten Firmen</title>
+    <style>
+        :root {
+            --orange: #FF4500; /* Viel knalligeres Orange-Rot */
+            --black: #000000;
+            --dark-grey: #121212;
+            --text-color: #ffffff;
+            --spacing: 40px;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--black);
+            color: var(--text-color);
+            margin: 0;
+            line-height: 1.2;
+            word-spacing: -2px;
+        }
+
+        header {
+            height: 80vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            padding: var(--spacing);
+            background-color: var(--black);
+            border-bottom: 20px solid var(--orange);
+        }
+
+        h1 {
+            font-size: clamp(3rem, 12vw, 8rem);
+            margin: 0;
+            color: var(--orange);
+            text-transform: uppercase;
+            font-weight: 900;
+            line-height: 0.9;
+            letter-spacing: -4px;
+        }
+
+        .subtitle {
+            font-size: clamp(1.2rem, 4vw, 2.5rem);
+            max-width: 900px;
+            margin-top: 20px;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        section {
+            padding: 100px var(--spacing);
+        }
+
+        .section-title {
+            font-size: clamp(2rem, 8vw, 5rem);
+            color: var(--orange);
+            text-transform: uppercase;
+            font-weight: 900;
+            margin-bottom: 60px;
+            letter-spacing: -2px;
+            line-height: 0.8;
+        }
+
+        .quote-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 20px;
+        }
+
+        .quote-card {
+            background-color: var(--orange);
+            color: var(--black);
+            padding: 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.1s ease;
+            cursor: crosshair;
+        }
+
+        .quote-card:nth-child(even) {
+            background-color: #fff;
+        }
+
+        .quote-card:hover {
+            transform: rotate(-1deg) scale(1.02);
+            z-index: 10;
+        }
+
+        .quote-card p {
+            font-size: 2.2rem;
+            font-weight: 900;
+            margin: 0 0 30px 0;
+            text-transform: uppercase;
+        }
+
+        .quote-card span {
+            font-weight: 700;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+            background-color: var(--black);
+            color: #fff;
+            padding: 5px 10px;
+            align-self: flex-start;
+        }
+
+        .big-banner {
+            background-color: #fff;
+            color: var(--black);
+            padding: 150px var(--spacing);
+            text-align: left;
+        }
+
+        .big-banner h2 {
+            font-size: clamp(2.5rem, 10vw, 7rem);
+            font-weight: 900;
+            margin: 0;
+            line-height: 0.85;
+            text-transform: uppercase;
+            letter-spacing: -3px;
+        }
+
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 60px;
+        }
+
+        .character h3 {
+            font-size: 3rem;
+            color: var(--orange);
+            margin: 0 0 10px 0;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        .character p {
+            font-size: 1.5rem;
+            color: #888;
+            font-weight: 500;
+        }
+
+        .lever-list {
+            counter-reset: lever-counter;
+        }
+
+        .lever-item {
+            display: block;
+            padding: 40px 0;
+            border-bottom: 5px solid #222;
+        }
+
+        .lever-item::before {
+            counter-increment: lever-counter;
+            content: "0" counter(lever-counter);
+            font-size: 1.5rem;
+            color: var(--orange);
+            font-weight: 900;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .lever-item b {
+            font-size: clamp(1.5rem, 5vw, 3.5rem);
+            color: #fff;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 10px;
+            line-height: 0.9;
+        }
+
+        .lever-item span {
+            font-size: 1.4rem;
+            color: #666;
+            font-weight: 600;
+        }
+
+        footer {
+            background-color: var(--orange);
+            color: var(--black);
+            padding: 150px var(--spacing);
+        }
+
+        .footer-title {
+            font-size: clamp(3rem, 12vw, 9rem);
+            font-weight: 900;
+            line-height: 0.8;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+            letter-spacing: -5px;
+        }
+
+        .contact-link {
+            font-size: 2.5rem;
+            color: var(--black);
+            text-decoration: underline;
+            font-weight: 900;
+            text-transform: uppercase;
+            display: block;
+            margin-top: 40px;
+            word-break: break-all;
+        }
+
+        @media (max-width: 768px) {
+            .quote-grid { grid-template-columns: 1fr; }
+            .quote-card { padding: 30px; }
+            .quote-card p { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Neues bauen<br>in alten Firmen</h1>
+    <p class="subtitle">Echte Geschichten aus dem Maschinenraum.<br>Keine Theorie. Nur Realität.</p>
+</header>
+
+<div style="background-color: var(--black); padding: 60px var(--spacing); text-align: center;">
+    <img src="Bilder/Titelbild.png" alt="Buchcover" style="width: 100%; max-width: 800px; height: auto; border: 15px solid var(--orange); box-shadow: 30px 30px 0 #fff;">
+</div>
+
+<section>
+    <h2 class="section-title">Waffen gegen die Selbstlüge</h2>
+    <div class="quote-grid">
+        <div class="quote-card">
+            <p>„Kill early, kill clean.“</p>
+            <span>Dr. Kramer</span>
+        </div>
+        <div class="quote-card" style="background-color: var(--black); color: var(--orange);">
+            <p>„Formel-1-Auto auf einer Schotterpiste ohne Tankstelle.“</p>
+            <span>Tom</span>
+        </div>
+        <div class="quote-card">
+            <p>„Innovation ist kein Job. Es ist eine Entscheidung.“</p>
+            <span>Sabine</span>
+        </div>
+        <div class="quote-card" style="background-color: #fff; color: #000;">
+            <p>„Sagt mir, wie ich es in zwei Sätzen erkläre.“</p>
+            <span>Jürgen</span>
+        </div>
+        <div class="quote-card">
+            <p>„Strategie ohne Umsatz ist Prosa.“</p>
+            <span>Dr. Patrick Kant</span>
+        </div>
+        <div class="quote-card" style="background-color: var(--black); color: #fff;">
+            <p>„Wer für den Applaus baut, stirbt im Applaus.“</p>
+            <span>Die bittere Wahrheit</span>
+        </div>
+    </div>
+</section>
+
+<div class="big-banner">
+    <h2>Wer für die Skalierung baut, überlebt.</h2>
+</div>
+
+<section>
+    <h2 class="section-title">Die Gesichter</h2>
+    <div class="character-grid">
+        <div class="character">
+            <h3>Sabine</h3>
+            <p>Die Strategin. Kennt jede Reorg beim Vornamen.</p>
+        </div>
+        <div class="character">
+            <h3>Tom</h3>
+            <p>Der Techniker. Sucht immer noch die Steckdose beim Kunden.</p>
+        </div>
+        <div class="character">
+            <h3>Funmi</h3>
+            <p>Die Idealistin. Kämpft gegen Post-it-Innovation.</p>
+        </div>
+        <div class="character">
+            <h3>Dr. Kramer</h3>
+            <p>Der Senior Manager. Hat das System gebaut und weiß, wie man es hackt.</p>
+        </div>
+    </div>
+</section>
+
+<section style="background-color: #000;">
+    <h2 class="section-title">Die 7 Hebel</h2>
+    <div class="lever-list">
+        <div class="lever-item"><b>Customer First</b> <span>Idee vom Kunden, nicht vom Chef.</span></div>
+        <div class="lever-item"><b>Sell from Day One</b> <span>Geld vor Applaus. Bezahlte Piloten.</span></div>
+        <div class="lever-item"><b>Kill Fast, Kill Clean</b> <span>Portfolio bereinigen. Stoppen ist Erfolg.</span></div>
+        <div class="lever-item"><b>Build the Bridge</b> <span>Übergabe geplant, kein Valley of Death.</span></div>
+        <div class="lever-item"><b>Hack the Process</b> <span>Prozesse kennen. Regelkenntnis schlägt Regelbruch.</span></div>
+        <div class="lever-item"><b>Fix the Middle</b> <span>Incentives, Kultur, Karrierepfade.</span></div>
+        <div class="lever-item"><b>Think Distribution</b> <span>Kanal vor Feature. Wer verkauft es Jürgen?</span></div>
+    </div>
+</section>
+
+<footer>
+    <div class="footer-title">Hör auf zu lesen. Fang an zu machen.</div>
+    <a href="mailto:[E-Mail Adresse hier]" class="contact-link">BITTE KONTAKTIERE UNS.</a>
+    <p style="margin-top: 100px; font-weight: 700;">&copy; 2026 Dr. Patrick Kant | Neues bauen in alten Firmen</p>
+</footer>
+
+</body>
+</html>
